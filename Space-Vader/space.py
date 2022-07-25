@@ -65,8 +65,15 @@ def welcome():
 def gameloop(speed1, frequency):
     game_over = True
     game_end = True
-    with open("highscore.txt") as f:
-        hscore = int(f.read())
+    if speed1 == 4:
+        with open("diffhiscore.txt", "r+") as p:
+            hscore = int(p.read())
+    elif speed1 == 3:
+        with open("medhiscore.txt", "r+") as p:
+            hscore = int(p.read())
+    else:
+        with open("easyhiscore.txt", "r+") as p:
+            hscore = int(p.read())
     score = 0
     playerX = 370
     playerY = 480
@@ -158,8 +165,15 @@ def gameloop(speed1, frequency):
                 m += 1
                 if hscore < score:
                     hscore = score
-                    with open("highscore.txt", "r+") as p:
-                        p.write(str(hscore))
+                    if speed1 == 4:
+                        with open("diffhiscore.txt", "r+") as p:
+                            p.write(str(hscore))
+                    elif speed1 == 3:
+                        with open("medhiscore.txt", "r+") as p:
+                            p.write(str(hscore))
+                    else:
+                        with open("easyhiscore.txt", "r+") as p:
+                            p.write(str(hscore))
 
             screen_write(f"Score : {score}", (255, 0, 0), 0, 0)
             screen_write(f"High Score: {hscore}", (255, 0, 0), 0, 50)
